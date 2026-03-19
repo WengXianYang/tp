@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public class TripList {
 
-    public boolean contains(Trip trip) {
-        return trips.contains(trip);
-    }
-
     private final ArrayList<Trip> trips;
 
     public TripList() {
@@ -43,5 +39,10 @@ public class TripList {
         }
         return matchingTrips;
     }
+
+    public boolean contains(Trip trip) {
+        return trips.contains(trip);
+    }
+
 }
 

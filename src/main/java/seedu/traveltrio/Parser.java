@@ -9,7 +9,9 @@ public class Parser {
         for (int i = 0; i < prefixes.length; i++) {
             String currentPrefix = prefixes[i];
             int start = args.indexOf(currentPrefix);
-            if (start == -1) continue;
+            if (start == -1) {
+                continue;
+            }
 
             start += currentPrefix.length();
             int end = args.length();

@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class TravelTrio {
-    private final static TripList tripList = new TripList();
+    private static final TripList tripList = new TripList();
     private static Trip openTrip = null;
-    private final static String LOGO =
+    private static final String LOGO =
             "  _______                   _ _______   _ \n"
             + " |__   __|                 | |__   __| (_) \n"
             + "    | |_ __ __ ___   _____ | |  | |_ __ _  ___  \n"
@@ -111,7 +111,8 @@ public class TravelTrio {
                 case "deleteactivity":
                     ensureTripOpen();
                     int actIdx = Integer.parseInt(details);
-                    System.out.println(new DeleteActivityCommand(openTrip.getActivities(), actIdx).execute(openTrip.getName()));
+                    System.out.println(new DeleteActivityCommand(openTrip.getActivities(), actIdx)
+                            .execute(openTrip.getName()));
                     break;
 
                 default:
