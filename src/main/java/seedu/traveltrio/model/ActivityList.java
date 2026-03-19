@@ -13,7 +13,9 @@ public class ActivityList {
         activities.add(a);
     }
 
-    public Activity remove(int index) { return activities.remove(index); }
+    public Activity remove(int index) {
+        return activities.remove(index);
+    }
 
     public Activity get(int index) {
         return activities.get(index);
