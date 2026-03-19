@@ -1,7 +1,5 @@
 package seedu.traveltrio.command;
 
-import java.util.ArrayList;
-import seedu.traveltrio.model.Activity;
 import seedu.traveltrio.model.ActivityList;
 
 public class ListActivityCommand extends ActivityCommand {
