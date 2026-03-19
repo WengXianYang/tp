@@ -1,7 +1,6 @@
-package seedu.duke.command;
+package seedu.traveltrio.command;
 
-import seedu.duke.model.Trip;
-import seedu.duke.model.TripList;
+import seedu.traveltrio.model.TripList;
 
 public class DeleteTripCommand extends TripCommand {
     private final int index;
@@ -17,9 +16,9 @@ public class DeleteTripCommand extends TripCommand {
             if (index < 0 || index >= tripList.size()) {
                 return "Invalid trip index.";
             }
-            Trip removedTrip = tripList.get(index);
-            tripList.remove(removedTrip);
-            return "Deleted trip: " + removedTrip.getDestination();
+            String removedTrip = tripList.get(index).toString();
+            tripList.remove(index);
+            return "Deleted trip: " + removedTrip;
         } catch (NumberFormatException e) {
             return "Please enter a valid number for the trip index.";
         }
