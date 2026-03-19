@@ -8,9 +8,9 @@ public abstract class TripCommand {
 
     public TripCommand(TripList tripList) {
         this.tripList = tripList;
-}
-
-public abstract String execute();
+    }
+    
+    public abstract String execute();
 
 }
 
