@@ -1,6 +1,1 @@
-addtrip n/Seoul s/2026-12-01 e/2026-12-10
-listtrip
-opentrip 1
-addactivity t/Palace d/2026-12-02 st/1000 et/1200 l/Gyeongbokgung
-listactivity
 exit
