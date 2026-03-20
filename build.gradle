@@ -45,6 +45,10 @@ run{
     standardInput = System.in
 }
 
-run {
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+run{
     enableAssertions = true
 }
