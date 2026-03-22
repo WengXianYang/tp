@@ -68,9 +68,9 @@ public class Activity {
 
     public String formatForList() {
         String result = name + "\n";
-        result += "   📍 Location: " + (location != null ? location : "---") + "\n";
-        result += "   📆 Date: " + (date != null ? date : "---") + "\n";
-        result += "   🕛 Time: " + (start == null || end == null ? "---" : (start + " to " + end));
+        result += "   Location: " + (location != null ? location : "---") + "\n";
+        result += "   Date: " + (date != null ? date : "---") + "\n";
+        result += "   Time: " + (start == null || end == null ? "---" : (start + " to " + end));
 
         return result;
     }

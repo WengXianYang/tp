@@ -60,8 +60,8 @@ public class Trip {
 
     public String formatForList() {
         String result = name + "\n";
-        result += "   📅 Start: " + startDate + "\n";
-        result += "   📅 End:   " + endDate;
+        result += "   Start: " + startDate + "\n";
+        result += "   End:   " + endDate;
         return result;
     }
 }

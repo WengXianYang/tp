@@ -11,12 +11,12 @@ import seedu.traveltrio.command.activity.EditActivityCommand;
 import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class TravelTrio {
     private static final TripList tripList = new TripList();
     private static Trip openTrip = null;
+    private static final Scanner in = new Scanner(System.in);
     private static final String LOGO =
             "  _______                   _ _______   _ \n"
             + " |__   __|                 | |__   __| (_) \n"
@@ -28,31 +28,25 @@ public class TravelTrio {
     public static void main(String[] args) {
         System.out.println("Welcome to \n" + LOGO);
         System.out.println("How can I help you plan today?");
-
-        Scanner in = new Scanner(System.in);
+        System.out.println("Commands: addtrip, listtrip, opentrip, deletetrip, addactivity, listactivity, editactivity, deleteactivity, exit");
 
         while (true) {
             System.out.println("> ");
             String input = in.nextLine().trim();
+
             if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Goodbye! Happy Travels!");
                 break;
             }
 
             try {
-                String[] parts = input.split(" ", 2);
-                String command = parts[0].toLowerCase();
-                String details = "";
-                if (parts.length > 1) {
-                    details = parts[1];
-                }
+                String command = input.toLowerCase();
 
                 switch (command) {
                 case "addtrip":
-                    HashMap<String, String> tripMap = Parser.parseArgs(details, "n/", "s/", "e/");
-                    String name = tripMap.get("n/");
-                    String start = tripMap.get("s/");
-                    String end = tripMap.get("e/");
-
+                    String name = promptField("Trip Name");
+                    String start = promptField("Start Date (YYYY-MM-DD)");
+                    String end = promptField("End Date (YYYY-MM-DD)");
                     System.out.println(new AddTripCommand(tripList, name, start, end).execute());
                     break;
 
@@ -61,14 +55,16 @@ public class TravelTrio {
                     break;
 
                 case "opentrip":
-                    int idx = Integer.parseInt(details);
+                    System.out.println(new ListTripCommand(tripList).execute());
+                    int idx = promptInt("Enter the number of the trip to open");
                     openTrip = tripList.get(idx - 1);
                     assert openTrip != null;
                     System.out.println(new OpenTripCommand(tripList, idx).execute());
                     break;
 
                 case "deletetrip":
-                    int tripIdx = Integer.parseInt(details);
+                    System.out.println(new ListTripCommand(tripList).execute());
+                    int tripIdx = promptInt("Enter the number of the trip to delete");
                     System.out.println(new DeleteTripCommand(tripList, tripIdx).execute());
                     // If the open trip is the one deleted, reset opentrip
                     if (openTrip != null && !tripList.contains(openTrip)) {
@@ -79,44 +75,41 @@ public class TravelTrio {
 
                 case "addactivity":
                     ensureTripOpen();
-                    HashMap<String, String> activityMap = Parser.parseArgs(details, "t/", "d/", "st/", "et/", "l/");
-                    String title = activityMap.get("t/");
-                    String date = activityMap.get("d/");
-                    String startTime = activityMap.get("st/");
-                    String endTime = activityMap.get("et/");
-                    String location = activityMap.get("l/");
-
-                    System.out.println(new AddActivityCommand(openTrip.getActivities(),
-                            title, location, date, startTime, endTime)
-                            .execute(openTrip.getName()));
+                    String title = promptField("Activity Title");
+                    String location = promptField("Location");
+                    String date = promptField("Date (YYYY-MM-DD)");
+                    String startTime = promptField("Start Time (HH:MM)");
+                    String endTime = promptField("End Time (HH:MM)");
+                    System.out.println(new AddActivityCommand(openTrip.getActivities(),title, location, date, startTime, endTime).execute(openTrip.getName()));
                     break;
 
                 case "listactivity":
                     ensureTripOpen();
-                    System.out.println(new ListActivityCommand(openTrip.getActivities())
-                            .execute(openTrip.getName()));
+                    System.out.println(new ListActivityCommand(openTrip.getActivities()).execute(openTrip.getName()));
                     break;
 
                 case "editactivity":
                     ensureTripOpen();
-                    HashMap<String, String> editMap = Parser.parseArgs(details, "i/", "t/", "d/", "st/", "et/", "l/");
-                    int activityIdx = Integer.parseInt(editMap.get("i/"));
-
-                    System.out.println(new EditActivityCommand(openTrip.getActivities(), activityIdx,
-                            editMap.get("t/"), editMap.get("l/"), editMap.get("d/"),
-                            editMap.get("st/"), editMap.get("et/")).execute(openTrip.getName()));
+                    System.out.println(new ListActivityCommand(openTrip.getActivities()).execute(openTrip.getName()));
+                    int activityIdx = promptInt("Enter the number of the activity to edit");
+                    System.out.println("Leave any field blank to keep current values.");
+                    String newTitle = promptField("New Title");
+                    String newLocation = promptField("New Location");
+                    String newDate = promptField("New Date (YYYY-MM-DD)");
+                    String newStartTime = promptField("New Start Time (HH:MM)");
+                    String newEndTime = promptField("New End Time (HH:MM)");
+                    System.out.println(new EditActivityCommand(openTrip.getActivities(), activityIdx, newTitle, newLocation, newDate, newStartTime, newEndTime).execute(openTrip.getName()));
                     break;
 
                 case "deleteactivity":
                     ensureTripOpen();
-                    int actIdx = Integer.parseInt(details);
-                    System.out.println(new DeleteActivityCommand(openTrip.getActivities(), actIdx)
-                            .execute(openTrip.getName()));
+                    System.out.println(new ListActivityCommand(openTrip.getActivities()).execute(openTrip.getName()));
+                    int actIdx = promptInt("Enter the number of the activity to delete");
+                    System.out.println(new DeleteActivityCommand(openTrip.getActivities(), actIdx).execute(openTrip.getName()));
                     break;
 
                 default:
-                    System.out.println("Unknown command.");
-
+                    System.out.println("Unknown command. Available commands: addtrip, listtrip, opentrip, deletetrip, addactivity, listactivity, editactivity, deleteactivity, exit"); 
                 }
             } catch (Exception e){
                 System.out.println("Error. " + e.getMessage());
@@ -124,6 +117,30 @@ public class TravelTrio {
 
         }
 
+    }
+
+    private static String promptField(String label) {
+        while (true) {
+            System.out.print(label + ": ");
+            String input = in.nextLine().trim();
+            if (!input.isEmpty()) {
+                return input;
+            }
+            System.out.println("Input cannot be empty. Please try again.");
+        }
+
+    }
+
+    private static int promptInt(String label) {
+        while (true) {
+            System.out.print(label + ": ");
+            String input = in.nextLine().trim();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Please enter a valid integer.");
+            }
+        }
     }
 
     private static void ensureTripOpen() {
