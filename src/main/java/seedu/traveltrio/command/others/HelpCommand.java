@@ -2,7 +2,7 @@ package seedu.traveltrio.command.others;
 
 public class HelpCommand {
     public static final String MESSAGE_USAGE =
-            "==================== TRAVELTRIO HELP GUIDE ====================\n"
+            "-------------------- TRAVELTRIO HELP GUIDE --------------------\n"
                     + "Here are the available commands. After entering a command,\n"
                     + "the app will guide you step-by-step through the process.\n\n"
 
@@ -25,7 +25,7 @@ public class HelpCommand {
                     + "--- General Commands ---\n"
                     + "11. help         : Show this help menu.\n"
                     + "12. exit         : Exit the application.\n"
-                    + "===============================================================";
+                    + "---------------------------------------------------------------";
 
     public String execute() {
         return MESSAGE_USAGE;
