@@ -20,11 +20,12 @@ public class HelpCommand {
 
                     + "--- Budget Commands (Requires an open trip) ---\n"
                     + "9. addbudget     : Assign a budget to a specific activity.\n"
-                    + "10. budgetsummary: View a breakdown of expenses and remaining budget.\n\n"
+                    + "10. setexpense   : Set the actual spending for a specific activity that has a budget.\n"
+                    + "11. budgetsummary: View a breakdown of expenses and remaining budget.\n\n"
 
                     + "--- General Commands ---\n"
-                    + "11. help         : Show this help menu.\n"
-                    + "12. exit         : Exit the application.\n"
+                    + "12. help         : Show this help menu.\n"
+                    + "13. exit         : Exit the application.\n"
                     + "---------------------------------------------------------------";
 
     public String execute() {
