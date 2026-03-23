@@ -4,12 +4,14 @@ import seedu.traveltrio.command.activity.AddActivityCommand;
 import seedu.traveltrio.command.activity.DeleteActivityCommand;
 import seedu.traveltrio.command.activity.EditActivityCommand;
 import seedu.traveltrio.command.activity.ListActivityCommand;
-import seedu.traveltrio.command.budget.AddBudgetCommand;
-import seedu.traveltrio.command.budget.BudgetSummaryCommand;
+import seedu.traveltrio.command.finance.budget.AddBudgetCommand;
+import seedu.traveltrio.command.finance.budget.BudgetSummaryCommand;
+import seedu.traveltrio.command.finance.expense.SetExpenseCommand;
 import seedu.traveltrio.command.trip.AddTripCommand;
 import seedu.traveltrio.command.trip.DeleteTripCommand;
 import seedu.traveltrio.command.trip.ListTripCommand;
 import seedu.traveltrio.command.trip.OpenTripCommand;
+import seedu.traveltrio.model.activity.ActivityList;
 import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 
@@ -56,10 +58,13 @@ public class CommandProcessor {
             case "budgetsummary":
                 handleBudgetSummary();
                 break;
+            case "setexpense":
+                handleSetExpense();
+                break;
             default:
                 handleUnknownCommand();
             }
-        } catch (TravelTrioException e){
+        } catch (TravelTrioException e) {
             ui.showError(e.getMessage());
         } catch (IndexOutOfBoundsException e) {
             ui.showError("That number is not in the list. Please check the list and try again.");
@@ -91,6 +96,49 @@ public class CommandProcessor {
         ui.showMessage(new AddBudgetCommand(openTrip.getBudgets(),
                 openTrip.getActivities(), openTrip.getActivities().get(budgetActivityIdx - 1), budgetAmount)
                 .execute());
+    }
+
+    private void handleSetExpense() throws TravelTrioException {
+        ensureTripOpen();
+        if (openTrip.getActivities().isEmpty()) {
+            throw new TravelTrioException("Activity list is empty! No activity to set expense for now...");
+        }
+        printActivityList();
+        ActivityList activities = openTrip.getActivities();
+        int activityIdx;
+        while (true) {
+            String input = ui.promptField("Enter the activity number to set actual spending "
+                    + "(or type 'exit' to cancel): ");
+
+            if (input.equalsIgnoreCase("exit")) {
+                ui.showMessage("Set expense cancelled.");
+                return;
+            }
+
+            try {
+                activityIdx = Integer.parseInt(input);
+
+                if (activityIdx < 1 || activityIdx > activities.size()) {
+                    ui.showError("Selected activity index is out of range. Please enter a number from 1 to "
+                            + activities.size() + ".");
+                    continue;
+                }
+
+                break;
+            } catch (NumberFormatException e) {
+                ui.showError("Please enter a valid activity number, or type 'exit' to cancel.");
+            }
+        }
+
+        double actualAmount = ui.promptDouble("Enter amount ($)");
+        String successMessage = new SetExpenseCommand(
+                openTrip.getBudgets(),
+                openTrip.getActivities(),
+                openTrip.getActivities().get(activityIdx - 1),
+                actualAmount
+        ).execute();
+
+        ui.showMessage(successMessage);
     }
 
     private void handleDeleteActivity() throws TravelTrioException {
