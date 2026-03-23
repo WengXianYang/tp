@@ -12,6 +12,7 @@ import seedu.traveltrio.command.trip.DeleteTripCommand;
 import seedu.traveltrio.command.trip.ListTripCommand;
 import seedu.traveltrio.command.trip.OpenTripCommand;
 import seedu.traveltrio.model.activity.ActivityList;
+import seedu.traveltrio.command.others.HelpCommand;
 import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 
@@ -60,6 +61,9 @@ public class CommandProcessor {
                 break;
             case "setexpense":
                 handleSetExpense();
+                break;
+            case "help":
+                handleHelp();
                 break;
             default:
                 handleUnknownCommand();
@@ -227,6 +231,10 @@ public class CommandProcessor {
         String start = ui.promptField("Start Date (YYYY-MM-DD)");
         String end = ui.promptField("End Date (YYYY-MM-DD)");
         ui.showMessage(new AddTripCommand(tripList, name, start, end).execute());
+    }
+
+    private void handleHelp() {
+        ui.showMessage(new HelpCommand().execute());
     }
 
     private void ensureTripOpen() throws TravelTrioException {
