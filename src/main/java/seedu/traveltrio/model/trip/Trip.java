@@ -25,11 +25,12 @@ public class Trip {
     public String toFileFormat() {
         StringBuilder sb = new StringBuilder();
         double totalBudget = budgets.getTotalTripBudget();
+        double remainingBudget = budgets.getTotalRemainingTripBudget();
 
         // Add trip details
         sb.append("***************************************************************************\n");
-        sb.append(String.format("Trip: %s | From: %s | To: %s | Total Budget: %.2f\n",
-                name, startDate, endDate, totalBudget));
+        sb.append(String.format("Trip: %s | From: %s | To: %s | \nTotal Budget: %.2f | Remaining Budget: %.2f \n",
+                name, startDate, endDate, totalBudget, remainingBudget));
         sb.append("***************************************************************************\n");
 
         String lastDate = "";
