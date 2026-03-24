@@ -42,7 +42,7 @@ public class StorageTest {
     public void load_activityWithoutTrip_throwsException() throws Exception {
         File tempFile = tempDir.resolve("orphan.txt").toFile();
         FileWriter writer = new FileWriter(tempFile);
-        // Missing Trip Header entirely
+        // Missing trip header entirely
         writer.write("=== Date: 2025-01-02 ===\n");
         writer.write("Title: Orphan Activity\n");
         writer.write("    Location: Nowhere\n");
@@ -52,7 +52,6 @@ public class StorageTest {
 
         Storage storage = new Storage(tempFile.getAbsolutePath());
 
-        // Should throw TravelTrioException because of your 'if (currentTrip == null)' check
         assertThrows(TravelTrioException.class, storage::load);
     }
 }
