@@ -19,6 +19,7 @@ import java.util.logging.Level;
  */
 public class Storage {
     private static final Logger logger = Logger.getLogger(Storage.class.getName());
+    private static final Ui ui = new Ui();
 
     private final String filePath;
 
@@ -57,12 +58,16 @@ public class Storage {
                     currentTrip = loadTripDetails(line, trips);
                 } else if (line.startsWith("=== Date:")) {
                     currentDate = loadDates(line);
-                } else if (line.startsWith("Activity")) {
-                    assert currentTrip != null: "No trip open!";
-                    lastActivity = loadActivityDetails(fileScanner, currentDate, currentTrip);
+                } else if (line.startsWith("Title:")) {
+                    if (currentTrip == null) {
+                        throw new TravelTrioException("Activity found without Trip header.");
+                    }
+                    lastActivity = loadActivityDetails(fileScanner, line, currentDate, currentTrip);
                 } else if (line.contains("Budget set:")) {
                     assert currentTrip != null: "No trip open!";
                     loadBudgetDetails(lastActivity, line, fileScanner, currentTrip);
+                } else {
+                    ui.showError("Line wrongly formatted found. [" + line + "]. ");
                 }
             }
             fileScanner.close();
@@ -87,14 +92,13 @@ public class Storage {
         currentTrip.getBudgets().addBudget(lastActivity, budget);
     }
 
-    private static Activity loadActivityDetails(Scanner fileScanner, String currentDate, Trip currentTrip) throws TravelTrioException {
-        Activity lastActivity;
-        String title = fileScanner.nextLine().split(": ")[1].trim();
+    private static Activity loadActivityDetails(Scanner fileScanner, String titleLine, String currentDate, Trip currentTrip) throws TravelTrioException {
+        String title = titleLine.split(": ")[1].trim();
         String loc = fileScanner.nextLine().split(": ")[1].trim();
         String start = fileScanner.nextLine().split(": ")[1].trim();
         String end = fileScanner.nextLine().split(": ")[1].trim();
 
-        lastActivity = new Activity(title, loc, currentDate, start, end);
+        Activity lastActivity = new Activity(title, loc, currentDate, start, end);
         currentTrip.getActivities().add(lastActivity);
         return lastActivity;
     }
