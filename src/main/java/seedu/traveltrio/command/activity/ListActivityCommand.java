@@ -14,11 +14,18 @@ public class ListActivityCommand extends ActivityCommand {
             throw new TravelTrioException("The itinerary is Empty.");
         }
 
-        String listToPrint = "Itinerary for " + tripName + ":\n\n";
-        for (int i = 0; i < activityList.size(); i++){
-            listToPrint += ((i+1) + ". " + activityList.get(i).formatForList() + "\n\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Itinerary for ").append(tripName).append(":\n");
+
+        for (int i = 0; i < activityList.size(); i++) {
+            sb.append("\n")
+                    .append(i + 1)
+                    .append(". ")
+                    .append(activityList.get(i).formatForList())
+                    .append("\n");
         }
-        return listToPrint;
+
+        return sb.toString();
 
     }
 }
