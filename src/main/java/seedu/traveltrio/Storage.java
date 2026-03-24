@@ -66,7 +66,7 @@ public class Storage {
                 } else if (line.contains("Budget set:")) {
                     assert currentTrip != null: "No trip open!";
                     loadBudgetDetails(lastActivity, line, fileScanner, currentTrip);
-                } else {
+                } else if (!line.startsWith("Total Budget:")){
                     ui.showError("Line wrongly formatted found. [" + line + "]. Check formatting before continuing.");
                 }
             }
