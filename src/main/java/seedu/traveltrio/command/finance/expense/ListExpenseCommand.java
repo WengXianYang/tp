@@ -29,7 +29,7 @@ public class ListExpenseCommand extends ExpenseCommand {
             }
 
             double planned = budget.getTotalBudget();
-            double actual = budget.getAmountSpent();
+            double actual = budget.getActualExpense();
 
             totalPlanned += planned;
             totalActual += actual;
