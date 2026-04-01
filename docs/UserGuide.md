@@ -11,19 +11,19 @@ Whether you are planning a weekend getaway or a month-long backpacking trip, Tra
 4. Open a command terminal (e.g., Command Prompt on Windows, Terminal on macOS), navigate to the folder where you placed the `.jar` file, and run the following command: `java -jar traveltrio.jar`.
 5. You should see the TravelTrio welcome logo. Type `help` and press Enter to see the list of available commands to get started!
 6. The command prompt will display your current working context:
-   - `> ` means no trip is currently open
-   - `[Trip Name] > ` means you are working within that trip
+   * `> ` means no trip is currently open
+   * `[Trip Name] > ` means you are working within that trip
 
 ### Date Format
-- Dates must be entered in `YYYY-MM-DD` format (e.g., `2026-05-01`).
-- Invalid formats will be rejected and you will be prompted to re-enter.
+* Dates must be entered in `YYYY-MM-DD` format (e.g., `2026-05-01`).
+* Invalid formats will be rejected and you will be prompted to re-enter.
 
 ### Time Format
-- Time must be entered in 24-hour format `HH:MM` (e.g., `14:30`).
+* Time must be entered in 24-hour format `HH:MM` (e.g., `14:30`).
 
 ### Notes
-- TravelTrio uses precise date and time validation to ensure consistency.
-- All activities must fall within the trip’s start and end dates.
+* TravelTrio uses precise date and time validation to ensure consistency.
+* All activities must fall within the trip’s start and end dates.
 
 ## Features 
 Unlike traditional CLI apps that force you to type long, complicated command strings, TravelTrio guides you step-by-step. Simply type the base command, and the app will prompt you for the required details!
@@ -33,8 +33,8 @@ Unlike traditional CLI apps that force you to type long, complicated command str
    * Create Trips: Use `addtrip` to define a trip name and its duration. The app automatically validates that your start date occurs before your end date. 
    * Track Multiple Itineraries: View all your saved journeys with `listtrip` and see a high-level spending summary for each.
    * Focus on a Trip: Use `opentrip` to select a "working" trip. Once a trip is open:
-     - All activity and budget commands will apply specifically to that itinerary  
-     - The command prompt will display the trip name (e.g., `[Japan Trip] >`) for clarity
+     * All activity and budget commands will apply specifically to that itinerary  
+     * The command prompt will display the trip name (e.g., `[Japan Trip] >`) for clarity
    * Flexible Data Sharing:
      * Export: Save a specific trip to a formatted `.txt` file using `exporttrip` to share with friends. 
      * Import: Seamlessly merge a trip file shared by another TravelTrio user using `importtrip`.
@@ -45,12 +45,11 @@ Unlike traditional CLI apps that force you to type long, complicated command str
    * Date Validation: The app ensures every activity falls within the start and end dates of your selected trip.
    * Easy Updates: Use `editactivity` to change locations or times without re-typing the entire entry. Leave a field blank to keep its current value.
    * Conflict Detection:
-  - When using `addactivity`, TravelTrio automatically checks for time overlaps between activities.
-  - If a conflict is detected, the activity will not be added.
-  - This ensures that your itinerary remains realistic and executable.
+     * When using `addactivity`, TravelTrio automatically checks for time overlaps between activities.
+     * If a conflict is detected, the activity will not be added.
+     * This ensures that your itinerary remains realistic and executable.
 
-    **Example:**
-   If you already have an activity from `10:00` to `12:00`, adding another activity from `11:00` to `13:00` will be rejected.
+   **Example:** If you already have an activity from `10:00` to `12:00`, adding another activity from `11:00` to `13:00` will be rejected.
 
 3. **Financial Tracking & Budgeting**
    Keep your travel expenses under control with integrated finance tools.
