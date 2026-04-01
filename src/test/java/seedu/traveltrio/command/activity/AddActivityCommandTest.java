@@ -1,19 +1,18 @@
-package seedu.traveltrio.command;
+package seedu.traveltrio.command.activity;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.traveltrio.TravelTrioException;
 import seedu.traveltrio.model.activity.ActivityList;
 import seedu.traveltrio.model.trip.Trip;
-import seedu.traveltrio.command.activity.AddActivityCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AddActivityCommandTest {
+public class AddActivityCommandTest {
 
     //positive
     @Test
-    void execute_activityListAndTripName_successfulMessage() throws TravelTrioException {
+    public void execute_activityListAndTripName_successfulMessage() throws TravelTrioException {
         Trip trip = new Trip("Winter trip", "2026-05-01", "2026-07-30");
         ActivityList activityList = new ActivityList(trip);
         String tripName = "Japan Trip";
@@ -31,7 +30,7 @@ class AddActivityCommandTest {
     }
 
     @Test
-    void execute_onlyActivityNameAndTripName_successfulMessage() throws TravelTrioException {
+    public void execute_onlyActivityNameAndTripName_successfulMessage() throws TravelTrioException {
         Trip trip = new Trip("Winter trip", "1 Oct", " Dec");
         ActivityList activityList = new ActivityList(trip);
         String tripName = "Japan Trip";
