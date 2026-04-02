@@ -69,7 +69,7 @@ public class Storage {
             writer.close();
 
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to export trip. " + e);
+            logger.log(Level.FINE, "Failed to export trip. " + e);
             throw new TravelTrioException("Failed to export trip to " + fileName + ".");
         }
     }
@@ -105,7 +105,7 @@ public class Storage {
                 }
             }
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Failed to load trips from " + file.getPath(), e);
+            logger.log(Level.FINE, "Failed to load trips from " + file.getPath(), e);
             throw new TravelTrioException("Error reading file. File might be corrupted.");
         }
         return trips;
@@ -193,7 +193,7 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to save trips. " + e);
+            logger.log(Level.FINE, "Failed to save trips. " + e);
             throw new TravelTrioException("Data not saved. Please check if the folder is read-only.");
         }
     }
