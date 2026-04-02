@@ -78,8 +78,8 @@ Adds a new trip to user's travel planner
 * Format: `addtrip`
     * After entering the command, the application will prompt users for inputs:
         * `Trip name`
-        * Start date in `yyyy-MM-dd` format
-        * End date in `yyyy-MM-dd` format
+        * Start date in `YYYY-MM-DD` format
+        * End date in `YYYY-MM-DD` format
 * Example usage:
   ```text
   > addtrip
@@ -138,16 +138,68 @@ Sets a trip as the active working trip, to allow users to add edit the opened tr
     ```
 
 * Expected result:
-  ```text
-  Opened trip: Japan Winter Trip (2026-12-01 to 2026-12-30)
-  [Opened: Japan Winter Trip] > 
-  ```
+    ```text
+    Opened trip: Japan Winter Trip (2026-12-01 to 2026-12-30)
+    [Opened: Japan Winter Trip] > 
+    ```
 <br>
+
+### 1.4 Exporting a Trip
+Exports a specific trip and all its activity and budget details into a text file. This file can then be shared with friends or used as a backup.
+
+* Format: `exporttrip`
+  * After entering the command, the application will prompt users for inputs:
+    * `Enter the index of the trip to export: `
+    * `Enter the file name to save as (e.g., JapanTrip.txt): `
+
+* Example usage:
+    ```text
+    > exporttrip
+    ===========================================================
+    Trips:
+    1. Japan Trip           (Total Spent: $0.00)
+       Start: 2026-04-04
+       End:   2026-04-04
+       ===========================================================
+       Enter the index of the trip to export: 1
+       Enter the file name to save as (e.g., JapanTrip.txt): JapanTrip.txt
+    ```
+
+* Expected result:
+    ```text
+    ===========================================================
+    Successfully exported 'Japan Trip' to JapanTrip.txt
+    ===========================================================
+    ```
+<br>
+
+### 1.5 Importing a Trip
+Imports a trip schedule and its budget details from a provided text file into your TravelTrio application.
+
+* Format: `importtrip`
+  * After entering the command, the application will prompt users for inputs:
+    * `Enter the file name to import (e.g., SharedTrip.txt): `
+
+* Example usage:
+    ```text
+    > importtrip
+    Enter the file name to import (e.g., SharedTrip.txt): JapanTrip.txt
+    ```
+
+* Expected result:
+    ```text
+    ===========================================================
+    Successfully imported new trip: 
+    Japan Trip (2026-04-04 to 2026-04-04)
+    ===========================================================
+    ```
+<br>
+
 
 ### 2. Itinerary Management
 *Note: a trip has to be "opened" by the user, in order to perform the following commands*
 
-#### 2.1 Adding an activity
+#### 2.1 Adding an Activity
 Adds a new activity to the current trip's itinerary*
 * Format: `addactivity`
     * After entering the command, the application will prompt the user for the required activity details.
@@ -157,42 +209,42 @@ Adds a new activity to the current trip's itinerary*
         * Start date in `yyyy-MM-dd` format
         * End date in `yyyy-MM-dd` format
 * Example usage:
-  ```text
-  > addactivity
-  Activity Title: Hiking
-  Location: Mount Fuji
-  Date (YYYY-MM-DD): 2026-12-10
-  Start Time (HH:MM): 09:00
-  End Time (HH:MM): 13:00
-  ```
+    ```text
+    > addactivity
+    Activity Title: Hiking
+    Location: Mount Fuji
+    Date (YYYY-MM-DD): 2026-12-10
+    Start Time (HH:MM): 09:00
+    End Time (HH:MM): 13:00
+    ```
 * Expected result:
-  ```text
-  ===========================================================
-  Activity added to Japan Winter Trip:
-
-  Hiking
-   Location: Mount Fuji
-   Date: 2026-12-10
-   Time: 09:00 to 13:00
-  ===========================================================
-  ```
+    ```text
+    ===========================================================
+    Activity added to Japan Winter Trip:
+    
+    Hiking
+    Location: Mount Fuji
+    Date: 2026-12-10
+    Time: 09:00 to 13:00
+    ===========================================================
+    ```
 <br>
 
-#### 2.2 Listing all activities (shows itinerary)
+#### 2.2 Listing all Activities (shows itinerary)
 Displays all activities in the itinerary of the opened trip
 * Format: `listactivity`
 
 * Expected result:
-  ```text
- 
-  No  | Activity                  | Location        | Date         | Time
-  -------------------------------------------------------------------------------------
-  1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
-  2   | Swimming                  | Hotel           | 2026-12-10   | 19:00 to 20:00
-  ```
+    ```text
+     
+    No  | Activity                  | Location        | Date         | Time
+    -------------------------------------------------------------------------------------
+    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
+    2   | Swimming                  | Hotel           | 2026-12-10   | 19:00 to 20:00
+    ```
 <br>
 
-#### 2.3 Editing an activity
+#### 2.3 Editing an Ectivity
 Edits one or more fields of an existing activity. Only specified fields are updated; unchanged fields remain as-is.
 * Format: `editactivity`
     * After entering the command, the application will prompt the user for the required activity details.
@@ -206,8 +258,8 @@ Edits one or more fields of an existing activity. Only specified fields are upda
         * `New End Time (HH:MM):`
 
 * Example usage:
-  ```text
-  > editactivity
+    ```text
+    > editactivity
     Enter the index of the activity to edit: 2
     Leave any field blank to keep current values.
     New Title: Night Swim
@@ -215,21 +267,21 @@ Edits one or more fields of an existing activity. Only specified fields are upda
     New Date (YYYY-MM-DD): 2026-12-11
     New Start Time (HH:MM): 16:00
     New End Time (HH:MM): 17:00
-  ```
+    ```
 * Expected result:
-  ```text
-  ===========================================================
-  Activity updated:
-
-  Night Swim
-  Location: Hotel
-  Date: 2026-12-11
-  Time: 16:00 to 17:00
-  ===========================================================
-  ```
+    ```text
+    ===========================================================
+    Activity updated:
+    
+    Night Swim
+    Location: Hotel
+    Date: 2026-12-11
+    Time: 16:00 to 17:00
+    ===========================================================
+    ```
 <br>
 
-#### 2.4 Deleting an activity
+#### 2.4 Deleting an Activity
 Removes an activity from the itinerary.
 * Format: `deleteactivity`
 * After entering the command, the application will prompt the user for the required activity details.
@@ -257,11 +309,14 @@ Removes an activity from the itinerary.
     ```
 <br>
 
+
 ### 3. Budget Management
 *Note: budget is assigned for an activity. Thus, the activity has to be created first before setting the activity budget.*
+*Note: All monetory values displayed are of the home currency of the user.*
 
-#### 3.1 Adding a budget for an activity
-Records the expected or planned cost of an activity
+#### 3.1 Adding a Budget for an Activity
+Records the expected or planned cost of an activity. To change the budget for a specific activity, the same command is used with the new budget amount. To delete a budget, simply use the same command and set the budget for the activity to 0.
+
 * Format: `setbudget`
     * After entering the command, the application will prompt the user for inputs:
         * `Enter the index of the activity to add a budget for:`
@@ -286,9 +341,10 @@ Records the expected or planned cost of an activity
     ```
 <br>
 
-#### 3.2 Viewing budget summary
+#### 3.2 Viewing Budget Summary
 Displays a comprehensive summary comparing your planned spending against your total budget.
 * Format: `budgetsummary`
+
 * Expected result:
     ```text
     ===========================================================
@@ -306,11 +362,13 @@ Displays a comprehensive summary comparing your planned spending against your to
     ```
 <br>
 
+
 ### 4. Expense Tracking
 
-#### 4.1 Set the actual expense for an activity
-    <br> Records the actual amount spent on an activity. This allows users to compare the actual expense against the planned budget for each activity in budgetsummary.
-    <br>*Note: A budget must be added for an activity before its expense can be set.*
+#### 4.1 Set the Actual Expense for an Activity
+Records the actual amount spent on an activity. This allows users to compare the actual expense against the planned budget for each activity in budgetsummary.
+*Note: A budget must be added for an activity before its expense can be set.*
+*Note: The user needs to specify if home currency or foreign currency is being input. 1 for foreign currency and 0 for home currency*
 
 * Format: `setexpense`
   * After entering the command, the application will prompt the user for inputs:
@@ -337,11 +395,11 @@ Displays a comprehensive summary comparing your planned spending against your to
     ```
 <br>
 
-
-#### 4.2 Listing all activity expenses
-    <br> Lists the actual expenses recorded for all activities in the currently opened trip. This allows users to review the spending for each activity and view the total expense incurred for the trip.
+#### 4.2 Listing all Activity Expenses
+Lists the actual expenses recorded for all activities in the currently opened trip. This allows users to review the spending for each activity and view the total expense incurred for the trip.
 
 * Format: `listexpense`
+
 * Expected result:
     ```text
     ===========================================================
@@ -360,9 +418,8 @@ Displays a comprehensive summary comparing your planned spending against your to
     ```
 <br>
 
-
-**4.3 Set a daily expense limit for a trip**
-<br> Sets a daily spending limit for the currently opened trip. This allows users to manage their daily expenses more effectively and compare their total daily spending against the limit.
+### 4.3 Set a Daily Expense Limit for a Trip
+Sets a daily spending limit for the currently opened trip. This allows users to manage their daily expenses more effectively and compare their total daily spending against the limit.
 
 * Format: setdailylimit
   * After entering the command, the application will prompt the user for inputs:
@@ -370,14 +427,13 @@ Displays a comprehensive summary comparing your planned spending against your to
 
 * Example usage:
     ```text
-    Enter daily spending limit to set ($):  500
+    Enter daily spending limit to set ($): 500
     ```
 * Expected result: 
     ```text
     Daily spending limit has been set to $500.00.
     ``` 
 <br>
-
 
 
 ## FAQ
