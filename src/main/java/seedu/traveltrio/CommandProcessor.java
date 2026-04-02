@@ -55,7 +55,7 @@ public class CommandProcessor {
      * @param command The raw command entered by user.
      */
     public void process(String command) {
-        logger.log(Level.INFO, "Processing command: {0}", command);
+        logger.log(Level.FINE, "Processing command: {0}", command);
         try {
             switch (command) {
             case "addtrip":
@@ -327,7 +327,7 @@ public class CommandProcessor {
         assert idx > 0 : "UI should have validated that idx is positive";
         openTrip = tripList.get(idx - 1);
         assert openTrip != null;
-        logger.log(Level.INFO, "Trip opened: {0}", openTrip.getName());
+        logger.log(Level.FINE, "Trip opened: {0}", openTrip.getName());
         ui.showMessage(new OpenTripCommand(tripList, idx).execute());
     }
 
@@ -336,7 +336,7 @@ public class CommandProcessor {
     }
 
     private void handleAddTrip() throws TravelTrioException {
-        logger.log(Level.INFO, "Entering handleAddTrip()");
+        logger.log(Level.FINE, "Entering handleAddTrip()");
         String name = ui.promptField("Trip Name");
         String start;
         String end;
@@ -354,7 +354,7 @@ public class CommandProcessor {
 
         assert !name.isEmpty() && !start.isEmpty() && !end.isEmpty() : "UI returned empty fields";
 
-        logger.log(Level.INFO, "Successfully added trip: {0}", name);
+        logger.log(Level.FINE, "Successfully added trip: {0}", name);
 
         ui.showMessageWithDivider(new AddTripCommand(tripList, name, start, end).execute());
     }
