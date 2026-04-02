@@ -1,0 +1,92 @@
+@startuml
+hide footbox
+skinparam responseMessageBelowArrow true
+skinparam maxMessageSize 120
+
+actor User
+participant TravelTrio
+participant Ui
+participant CommandProcessor
+participant "openTrip: Trip" as Trip
+participant AddActivityCommand
+participant ActivityList
+participant Activity
+
+
+
+User -> TravelTrio : enter "addactivity"
+TravelTrio -> CommandProcessor ++ : process("addactivity")
+
+
+
+CommandProcessor -> CommandProcessor : handleAddActivity()
+CommandProcessor -> CommandProcessor : ensureTripOpen()
+
+CommandProcessor -> Trip : getStartDate()
+Trip --> CommandProcessor : tripStartDate
+CommandProcessor -> Trip : getEndDate()
+Trip --> CommandProcessor : tripEndDate
+
+CommandProcessor -> Ui : promptField("Activity Title")
+Ui --> CommandProcessor : title
+
+CommandProcessor -> Ui : promptField("Location")
+Ui --> CommandProcessor : location
+
+loop until date is within trip range
+    CommandProcessor -> Ui : promptDate("Date")
+    Ui --> CommandProcessor : date
+    CommandProcessor -> CommandProcessor : validate date within trip range
+    alt date outside trip range
+        CommandProcessor -> Ui : showError("Activity date is outside your trip dates...")
+    else valid date
+    end
+end
+
+loop until end time is after start time
+    CommandProcessor -> Ui : promptTime("Start Time")
+    Ui --> CommandProcessor : startTime
+    CommandProcessor -> Ui : promptTime("End Time")
+    Ui --> CommandProcessor : endTime
+    alt endTime earlier than startTime
+        CommandProcessor -> Ui : showError("End time cannot be earlier than start time...")
+    else valid time range
+    end
+end
+
+CommandProcessor -> Trip : getActivities()
+Trip --> CommandProcessor : activityList
+CommandProcessor -> Trip : getName()
+Trip --> CommandProcessor : tripName
+
+create AddActivityCommand
+CommandProcessor -> AddActivityCommand : new(activityList, title, location, date, startTime, endTime)
+activate AddActivityCommand
+
+CommandProcessor -> AddActivityCommand : execute(tripName)
+
+create Activity
+AddActivityCommand -> Activity : new(title, location, date, startTime, endTime)
+activate Activity
+Activity --> AddActivityCommand : activity
+deactivate Activity
+
+
+AddActivityCommand -> ActivityList : add(activity)
+activate ActivityList
+
+alt overlap detected
+    ActivityList --> AddActivityCommand : overlapWarning
+    AddActivityCommand --> CommandProcessor : throw TravelTrioException(overlapWarning)
+
+    CommandProcessor -> Ui : showError(overlapWarning)
+else no overlap
+    ActivityList --> AddActivityCommand : null
+    deactivate ActivityList
+    AddActivityCommand --> CommandProcessor : success message string
+    deactivate AddActivityCommand
+    CommandProcessor -> Ui : showMessageWithDivider(success message)
+end
+
+deactivate CommandProcessor
+@enduml

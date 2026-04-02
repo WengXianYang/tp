@@ -24,7 +24,7 @@ public class ActivityList {
                         + "Please edit the existing activity or choose a different time.");
             }
         }
-
+        // find position in sorted activity list to insert new activity
         int insertIdx = activities.size();
         for (int i = 0; i < activities.size(); i ++) {
             Activity current = activities.get(i);
