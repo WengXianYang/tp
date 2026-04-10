@@ -4,6 +4,7 @@ import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 import seedu.traveltrio.model.activity.Activity;
 import seedu.traveltrio.model.budget.Budget;
+import seedu.traveltrio.model.packing.PackingItem;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -106,8 +107,7 @@ public class Storage {
                     if (currentTrip != null) {
                         String[] parts = line.split("\\|", 2);
                         boolean isPacked = parts[0].equals("1");
-                        seedu.traveltrio.model.packing.PackingItem item = new seedu.traveltrio.model.packing.PackingItem
-                                (parts[1]);
+                        seedu.traveltrio.model.packing.PackingItem item = new PackingItem(parts[1]);
                         if (isPacked) {
                             item.markPacked();
                         }
