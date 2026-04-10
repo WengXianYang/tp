@@ -5,6 +5,7 @@ import seedu.traveltrio.command.activity.AddActivityCommand;
 import seedu.traveltrio.command.activity.DeleteActivityCommand;
 import seedu.traveltrio.command.activity.EditActivityCommand;
 import seedu.traveltrio.command.activity.ListActivityCommand;
+import seedu.traveltrio.command.activity.NextActivityCommand;
 import seedu.traveltrio.command.finance.budget.SetBudgetCommand;
 import seedu.traveltrio.command.finance.budget.BudgetSummaryCommand;
 import seedu.traveltrio.command.finance.budget.SetCurrencyCommand;
@@ -90,6 +91,9 @@ public class CommandProcessor {
                 break;
             case "deleteactivity":
                 handleDeleteActivity();
+                break;
+            case "nextactivity":
+                handleNextActivity();
                 break;
             case "setbudget":
                 handleSetBudget();
@@ -308,6 +312,11 @@ public class CommandProcessor {
         ui.showMessageWithDivider(new AddActivityCommand(openTrip.getActivities(),
                 title, location, date, startTime, endTime)
                 .run(openTrip.getName()));
+    }
+
+    private void handleNextActivity() throws TravelTrioException {
+        ensureTripOpen();
+        ui.showMessageWithDivider(new NextActivityCommand(openTrip.getActivities()).execute(openTrip.getName()));
     }
 
     private void handleDeleteTrip() throws TravelTrioException {

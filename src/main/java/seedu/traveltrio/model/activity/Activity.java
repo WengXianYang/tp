@@ -120,6 +120,13 @@ public class Activity {
         return end;
     }
 
+    public LocalDateTime getStartDateTime() {
+        if (date == null || start == null) {
+            return null;
+        }
+        return LocalDateTime.of(date, start);
+    }
+
     public boolean overlapsWith(Activity other) {
         if (this.date == null || other.date == null) {
             return false;

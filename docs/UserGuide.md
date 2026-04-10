@@ -334,6 +334,28 @@ Removes an activity from the itinerary.
     ```
 <br>
 
+### 2.5 Display Next Activity
+Display the next closet activity that would happen
+* Format: `nextactivity`
+* Example Usage:
+    ```text
+    >nextactivity
+    ```
+* Expected Result:
+    ```text
+    ===========================================================
+    Next activity for Test Trip V2.1:
+
+    Test 0
+        Location: JW
+        Date: 2026-10-04
+        Time: 21:30 to 21:59
+    ===========================================================
+    ```
+<br>
+
+
+
 
 ### 3. Budget Management
 *Note: budget is assigned for an activity. Thus, the activity has to be created first before setting the activity budget.*

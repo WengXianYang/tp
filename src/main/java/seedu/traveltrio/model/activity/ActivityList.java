@@ -76,6 +76,10 @@ public class ActivityList {
     public boolean isTripOpen() {
         return trip.isOpen();
     }
+
+    public ArrayList<Activity> getAll() {
+        return activities;
+    }
     
     public ArrayList<Activity> findActivities(String keyword) {
         ArrayList<Activity> matchingActivities = new ArrayList<>();
