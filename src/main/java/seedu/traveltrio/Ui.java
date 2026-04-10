@@ -38,7 +38,7 @@ public class Ui {
         System.out.println("How can I help you plan today?");
         System.out.println("Commands: addtrip, listtrip, opentrip, deletetrip, exporttrip, importtrip, " +
                 "addactivity, listactivity, editactivity, deleteactivity, nextactivity, addbudget, budgetsummary, " +
-                "budgetchart, additem, listitems, checkitem, deleteitem," +
+                "budgetchart, additem, listitems, checkitem, deleteitem, " +
                 "setexpense, listexpense, setcurrency, setdailylimit, addremark, help, exit");
     }
 
