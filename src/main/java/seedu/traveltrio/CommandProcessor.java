@@ -8,6 +8,7 @@ import seedu.traveltrio.command.activity.ListActivityCommand;
 import seedu.traveltrio.command.activity.NextActivityCommand;
 import seedu.traveltrio.command.finance.budget.SetBudgetCommand;
 import seedu.traveltrio.command.finance.budget.BudgetSummaryCommand;
+import seedu.traveltrio.command.finance.budget.BudgetChartCommand;
 import seedu.traveltrio.command.finance.budget.SetCurrencyCommand;
 import seedu.traveltrio.command.finance.expense.ListExpenseCommand;
 import seedu.traveltrio.command.finance.expense.SetDailyLimitCommand;
@@ -104,6 +105,9 @@ public class CommandProcessor {
             case "budgetsummary":
                 handleBudgetSummary();
                 break;
+            case "budgetchart":
+                handleBudgetChart();
+                break;
             case "setexpense":
                 handleSetExpense();
                 break;
@@ -157,6 +161,11 @@ public class CommandProcessor {
                 .run());
     }
 
+    private void handleBudgetChart() throws TravelTrioException {
+        ensureTripOpen();
+
+        ui.showMessageWithDivider(new BudgetChartCommand(openTrip.getBudgets(), openTrip.getActivities()).execute());
+    }
     private void handleSetCurrency() throws TravelTrioException {
         ensureTripOpen();
         double exchangeRate = ui.promptDouble("Current exchange rate is 1 Foreign Currency = " 

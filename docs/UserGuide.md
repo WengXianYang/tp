@@ -409,6 +409,20 @@ Displays a comprehensive summary comparing your planned spending against your to
     ```
 <br>
 
+### 3.3 Viewing Budget Chart
+Displays a visual chart showing how much of each activity's budget has been used.
+* Format: `budgetchart`
+
+* Expected Result:
+    ```text
+    Budget Usage Chart:
+
+    Hiking        | ██████████---------- | 50%
+    Swimming      | ███████████████----- | 75%
+    Cycling       | ████████████████████ | 100%
+    ```
+<br>
+
 
 ### 4. Expense Tracking
 
