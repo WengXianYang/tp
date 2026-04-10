@@ -228,6 +228,31 @@ Adds a new activity to the current trip's itinerary*
     Time: 09:00 to 13:00
     ===========================================================
     ```
+* Optional Field:
+    * Remark: Users may add additional notes (e.g., "Bring water", "Buy tickets early").
+    * If no remark is provided, it will be displayed as '-' in the activity list.
+* Example usage:
+```text
+> addremark
+
+Itinerary for Japan Winter Trip:
+No  | Activity                  | Location        | Date         | Time               | Remark
+--------------------------------------------------------------------------------------------------------------
+1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    | -
+2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00    | -
+
+Enter the index of the activity to add a remark to: 1
+Enter remark: Bring water and snacks
+```
+* Expected result:
+```text
+===========================================================
+Remark added to activity:
+
+Hiking
+Remark: Bring water and snacks
+===========================================================
+```
 <br>
 
 #### 2.2 Listing all Activities (shows itinerary)
@@ -237,15 +262,15 @@ Displays all activities in the itinerary of the opened trip
 * Expected result:
     ```text
      
-    No  | Activity                  | Location        | Date         | Time
-    -------------------------------------------------------------------------------------
-    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
-    2   | Swimming                  | Hotel           | 2026-12-10   | 19:00 to 20:00
+  No  | Activity                  | Location        | Date         | Time               | Remark
+ --------------------------------------------------------------------------------------------------------
+  1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    | Bring water
+  2   | Swimming                  | Hotel           | 2026-12-10   | 19:00 to 20:00    | -
     ```
 <br>
 
-#### 2.3 Editing an Ectivity
-Edits one or more fields of an existing activity. Only specified fields are updated; unchanged fields remain as-is.
+#### 2.3 Editing an Activity
+Edits one or more fields of an existing activity. Only specified fields are updated; unchanged fields remain as-is. Leave any field blank to keep current values.
 * Format: `editactivity`
     * After entering the command, the application will prompt the user for the required activity details.
     * Prompt users for inputs:
@@ -293,11 +318,11 @@ Removes an activity from the itinerary.
     > deleteactivity
   
     Itinerary for Japan Winter Trip:
-    No  | Activity                  | Location        | Date         | Time              
-    -------------------------------------------------------------------------------------
-    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
-    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00    
-    3   | Firework display          | Hokkaido        | 2026-12-13   | 19:00 to 20:00
+    No  | Activity                  | Location        | Date         | Time              | Remark
+    ------------------------------------------------------------------------------------------------
+    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    |Bring water
+    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00    |-
+    3   | Firework display          | Hokkaido        | 2026-12-13   | 19:00 to 20:00    |-
     
   Enter the index of the activity to delete:  3
     ```
@@ -327,10 +352,10 @@ Records the expected or planned cost of an activity. To change the budget for a 
     > setbudget
   
     Itinerary for Japan Winter Trip:
-    No  | Activity                  | Location        | Date         | Time
+    No  | Activity                  | Location        | Date         | Time           | Remarks
     -------------------------------------------------------------------------------------
-    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
-    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00   
+    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00 | -
+    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00 | -
   
     Enter the index of the activity to add a budget for:  1
     Enter budget amount ($):  200
@@ -379,10 +404,10 @@ Records the actual amount spent on an activity. This allows users to compare the
 * Example usage:
     ```text
     Itinerary for Japan Winter Trip:
-    No  | Activity                  | Location        | Date         | Time              
+    No  | Activity                  | Location        | Date         | Time           | Remarks
     -------------------------------------------------------------------------------------
-    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00    
-    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00  
+    1   | Hiking                    | Mount Fuji      | 2026-12-10   | 09:00 to 13:00 | -
+    2   | Night Swim                | Hotel           | 2026-12-11   | 16:00 to 17:00 | -  
     
     Enter the activity index to set actual spending (or type 'exit' to cancel):  1
     Is the amount in foreign currency? (1 for Yes, 0 for No):  0
