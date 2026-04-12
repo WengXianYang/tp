@@ -4,12 +4,25 @@ import seedu.traveltrio.TravelTrioException;
 import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 
+/**
+ * Command to add a new trip to the trip list.
+ * Validates that the trip name is non-empty, dates are provided,
+ * and the start date is before or equal to the end date.
+ */
 public class AddTripCommand extends TripCommand {
 
     private final String name;
     private final String startDate;
     private final String endDate;
 
+    /**
+     * Constructs an AddTripCommand with the specified trip details.
+     *
+     * @param tripList the list of trips to add to
+     * @param name the name of the trip
+     * @param startDate the start date of the trip
+     * @param endDate the end date of the trip
+     */
     public AddTripCommand(TripList tripList, String name, String startDate, String endDate) {
         super(tripList);
         this.name = name;

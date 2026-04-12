@@ -3,8 +3,17 @@ package seedu.traveltrio.command.trip;
 import seedu.traveltrio.TravelTrioException;
 import seedu.traveltrio.model.trip.TripList;
 
+/**
+ * Command to list all trips in the trip list.
+ * Displays each trip with its name, start date, end date, and total spent (if budget is set).
+ */
 public class ListTripCommand extends TripCommand {
 
+    /**
+     * Constructs a ListTripCommand.
+     *
+     * @param tripList the list of trips to display
+     */
     public ListTripCommand(TripList tripList) {
         super(tripList);
     }

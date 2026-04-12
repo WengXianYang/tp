@@ -5,11 +5,22 @@ import seedu.traveltrio.TravelTrioException;
 import seedu.traveltrio.model.trip.Trip;
 import seedu.traveltrio.model.trip.TripList;
 
+/**
+ * Command to export a trip to a file.
+ */
 public class ExportTripCommand extends TripCommand{
     private final int index;
     private final String fileName;
     private final Storage storage;
 
+    /**
+     * Constructs an ExportTripCommand with the specified trip index, file name, and storage.
+     *
+     * @param tripList the list of trips to export from
+     * @param tripNumber the 1-based index of the trip to export
+     * @param fileName the name of the file to export to
+     * @param storage the storage handler for exporting the trip
+     */
     public ExportTripCommand(TripList tripList, int tripNumber, String fileName, Storage storage) {
         super(tripList);
         this.index = tripNumber - 1;

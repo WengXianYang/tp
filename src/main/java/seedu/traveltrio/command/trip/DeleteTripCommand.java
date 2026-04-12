@@ -3,9 +3,18 @@ package seedu.traveltrio.command.trip;
 import seedu.traveltrio.TravelTrioException;
 import seedu.traveltrio.model.trip.TripList;
 
+/**
+ * Command to delete a trip from the trip list by index.
+ */
 public class DeleteTripCommand extends TripCommand {
     private final int index;
 
+    /**
+     * Constructs a DeleteTripCommand with the specified trip index.
+     *
+     * @param tripList the list of trips to delete from
+     * @param tripNumber the 1-based index of the trip to delete
+     */
     public DeleteTripCommand(TripList tripList, int tripNumber) {
         super(tripList);
         this.index = tripNumber - 1;
@@ -22,5 +31,5 @@ public class DeleteTripCommand extends TripCommand {
 
         return "Deleted trip: " + removedTrip;
     }
-    
+
 }
