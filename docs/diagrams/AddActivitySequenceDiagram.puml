@@ -1,0 +1,49 @@
+@startuml
+hide footbox
+actor User
+participant ":TravelTrio" as TravelTrio
+participant ":Ui" as Ui
+participant ":CommandProcessor" as CommandProcessor
+participant ":AddActivityCommand" as AddActivityCommand
+participant ":ActivityList" as ActivityList
+participant ":Activity" as Activity
+
+
+User -> TravelTrio : enter "addactivity"
+TravelTrio -> CommandProcessor : process("addactivity")
+
+CommandProcessor -> CommandProcessor : ensureTripOpen()
+CommandProcessor -> Ui : promptField("Activity Title")
+Ui --> CommandProcessor : title
+CommandProcessor -> Ui : promptField("Location")
+Ui --> CommandProcessor : location
+CommandProcessor -> Ui : promptDate("Date")
+Ui --> CommandProcessor : date
+
+CommandProcessor -> CommandProcessor : validate date within trip dates
+CommandProcessor -> Ui : promptTime("Start Time")
+Ui --> CommandProcessor : startTime
+CommandProcessor -> Ui : promptTime("End Time")
+Ui --> CommandProcessor : endTime
+
+CommandProcessor -> CommandProcessor : validate end time after start time
+
+create AddActivityCommand
+CommandProcessor -> AddActivityCommand : new AddActivityCommand(activityList, title, location, date, startTime, endTime)
+CommandProcessor -> AddActivityCommand : execute()
+
+AddActivityCommand -> AddActivityCommand : validate inputs not empty
+
+create Activity
+AddActivityCommand -> Activity : new Activity(title, location, date, startTime, endTime)
+Activity --> AddActivityCommand : return newActivity
+
+AddActivityCommand -> ActivityList : add(newActivity)
+ActivityList -> ActivityList : activities.add(newActivity)
+
+AddActivityCommand --> CommandProcessor : "Added activity: ..."
+CommandProcessor -> Ui : showMessageWithDivider(message)
+
+destroy AddActivityCommand
+
+@enduml
