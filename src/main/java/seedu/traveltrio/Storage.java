@@ -117,6 +117,10 @@ public class Storage {
                     ui.showError("Line wrongly formatted found. [" + line + "]. Check formatting.");
                 }
             }
+
+            for (int i = 0; i < trips.size(); i++) {
+                trips.get(i).getBudgets().recalculateTotalExpense();
+            }
         } catch (Exception e) {
             logger.log(Level.FINE, "Failed to load trips from " + file.getPath(), e);
             throw new TravelTrioException("Error reading file. File might be corrupted.");

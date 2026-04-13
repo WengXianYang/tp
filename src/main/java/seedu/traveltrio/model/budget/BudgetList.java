@@ -138,4 +138,14 @@ public class BudgetList {
     public boolean isEmpty() {
         return budgets.isEmpty();
     }
+
+    /**
+     * Recalculates the totalTripExpense from actual spendings of activities.
+     */
+    public void recalculateTotalExpense() {
+        totalTripExpense = 0;
+        for (Budget budget : budgets.values()) {
+            totalTripExpense += budget.getActualExpense();
+        }
+    }
 }
