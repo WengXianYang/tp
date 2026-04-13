@@ -1,11 +1,11 @@
 # Xian Yang (WengXianYang) - Project Portfolio Page
 
-TravelTrio is a desktop travel management application optimized for users who prefer a Command Line Interface (CLI).
+**TravelTrio** is a desktop travel management application optimized for users who prefer a Command Line Interface (CLI).
 It helps organized and thrifty travelers manage complex trip itineraries, track activity-based budgets, and handle currency exchange rates within a single, lightweight interface.
 
 Given below are my contributions to the project.
 
-### **New features**
+### **New Features**
 - Added `opentrip` command: opens an existing trip for activity/budget management.
 - Added `deletetrip` command: removes a trip from the trip list permanently.
 - Added `budget` command: assigns or adjusts budget information for a trip.
