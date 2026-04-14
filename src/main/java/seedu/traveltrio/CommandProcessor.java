@@ -235,7 +235,8 @@ public class CommandProcessor {
             throw new TravelTrioException("No activities found. Please add an activity before setting an expense.");
         }
         if (openTrip.getBudgets().isEmpty()) {
-            throw new TravelTrioException("No budgets set yet. Please use 'setbudget' to assign a budget to an activity first.");
+            throw new TravelTrioException
+                    ("No budgets set yet. Please use 'setbudget' to assign a budget to an activity first.");
         }
         printActivityList();
         ActivityList activities = openTrip.getActivities();
