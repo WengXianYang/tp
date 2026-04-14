@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 **Highlights:** Seamlessly integrates with the expense logging system to automatically convert foreign expenditures into the user's base currency, ensuring all budget summaries remain accurate regardless of where the money was spent.
 
-### **Enhancement: Added intuitive removal of financial limits**
+### **Enhancement: Added intuitive removal of budget limits**
 **What it does:** Allows the user to easily remove a set budget by updating it to `0`, and remove a daily spending limit by setting it to `0`.
 
 **Justification:** Provides users with the flexibility to undo financial constraints or adapt to changing travel plans where strict limits are no longer necessary.
