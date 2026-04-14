@@ -41,11 +41,11 @@ Given below are my contributions to the project.
 **Highlights:** Seamlessly integrates with the expense logging system to automatically convert foreign expenditures into the user's base currency, ensuring all budget summaries remain accurate regardless of where the money was spent.
 
 ### **Enhancement: Added intuitive removal of budget limits**
-**What it does:** Allows the user to easily remove a set budget by updating it to `0`, and remove a daily spending limit by setting it to `0`.
+**What it does:** Allows the user to easily remove a set budget by updating it to `0`.
 
-**Justification:** Provides users with the flexibility to undo financial constraints or adapt to changing travel plans where strict limits are no longer necessary.
+**Justification:** Provides users with the flexibility to undo budget constraints or adapt to changing travel plans where strict limits are no longer necessary.
 
-**Highlights:** Enhances the overall user experience by utilizing intuitive, natural inputs (zero values) to trigger deletion states, avoiding the need to bloat the CLI with separate "delete budget" or "delete limit" commands.
+**Highlights:** Enhances the overall user experience by utilizing intuitive, natural inputs (zero values) to trigger deletion states, avoiding the need to bloat the CLI with separate "delete budget" commands.
 
 ### **Enhancement: Added the ability to remove a daily spending limit**
 **What it does:** Allows the user to remove an existing daily spending limit for a trip entirely by setting the limit value to `0`.
