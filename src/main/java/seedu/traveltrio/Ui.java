@@ -93,8 +93,11 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return The string provided by the user, which may be empty.
      */
-    public String promptOptionalField(String label) {
+    public String promptOptionalField(String label)  throws TravelTrioException {
         System.out.print(label + ": ");
+        if (!in.hasNextLine()) {
+            throw new TravelTrioException("End of input reached.");
+        }
         return in.nextLine().trim();
     }
 
