@@ -39,11 +39,14 @@ public class Ui {
      * @param currentTripName The name of the trip currently being managed, or null if none.
      * @return The trimmed, lowercase string representing the user's command.
      */
-    public String readCommand(String currentTripName) {
+    public String readCommand(String currentTripName) throws TravelTrioException {
         if (currentTripName == null) {
             System.out.print("> ");
         } else {
             System.out.print("[Opened: " + currentTripName + "] > ");
+        }
+        if (!in.hasNextLine()) {
+            throw new TravelTrioException("End of input reached.");
         }
         String input = in.nextLine();
         return input.trim().toLowerCase();
@@ -70,9 +73,12 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return The non-empty string provided by the user.
      */
-    public String promptField(String label) {
+    public String promptField(String label) throws TravelTrioException {
         while (true) {
             System.out.print(label + ": ");
+            if (!in.hasNextLine()) {
+                throw new TravelTrioException("End of input reached.");
+            }
             String input = in.nextLine().trim();
             if (!input.isEmpty()) {
                 return input;
@@ -99,9 +105,12 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return The integer value provided by the user.
      */
-    public int promptInt(String label) {
+    public int promptInt(String label) throws TravelTrioException {
         while (true) {
             System.out.print(label + ": ");
+            if (!in.hasNextLine()) {
+                throw new TravelTrioException("End of input reached.");
+            }
             String input = in.nextLine().trim();
             try {
                 return Integer.parseInt(input);
@@ -118,9 +127,12 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return The double value provided by the user.
      */
-    public double promptDouble(String label) {
+    public double promptDouble(String label) throws TravelTrioException {
         while (true) {
             System.out.print(label + ": ");
+            if (!in.hasNextLine()) {
+                throw new TravelTrioException("End of input reached.");
+            }
             String input = in.nextLine().trim();
             try {
                 return Double.parseDouble(input);
@@ -136,9 +148,12 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return A valid date string in YYYY-MM-DD format.
      */
-    public String promptDate(String label) {
+    public String promptDate(String label) throws TravelTrioException {
         while (true) {
             System.out.print(label + " (YYYY-MM-DD): ");
+            if (!in.hasNextLine()) {
+                throw new TravelTrioException("End of input reached.");
+            }
             String input = in.nextLine().trim();
             try {
                 LocalDate.parse(input, DATE_FORMATTER);
@@ -155,9 +170,12 @@ public class Ui {
      * @param label The descriptive label for the requested input.
      * @return A valid time string in HH:MM format.
      */
-    public String promptTime(String label) {
+    public String promptTime(String label) throws TravelTrioException {
         while (true) {
             System.out.print(label + " (HH:MM): ");
+            if (!in.hasNextLine()) {
+                throw new TravelTrioException("End of input reached.");
+            }
             String input = in.nextLine().trim();
             try {
                 LocalTime.parse(input, TIME_FORMATTER);
