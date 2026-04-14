@@ -62,7 +62,7 @@ Given below are my contributions to the project.
 * Added some testcases for easier CI/CD
 
 ### **Documentation**
-**User Guide: **
+**User Guide:**
   * Added details for Delete trip feature
   * Added details for Set Currency feature
   * Added details for Budget management, including:
@@ -71,7 +71,7 @@ Given below are my contributions to the project.
     * add expenses and track category budgets
     * update currency exchange rates for total currency conversions
 
-**Developer Guide: **
+**Developer Guide:**
   * Added new user stories:
   * Added manual testing instructions for budget features:
   * Added implementation note for Set Budget feature:
